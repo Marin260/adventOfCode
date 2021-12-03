@@ -4,8 +4,8 @@ with open('day2/input.txt') as f:
 
 hValue = 0
 dValue = 0
-for i in range(len(scans)):
-    scans[i]= scans[i].split()
+for i in range(len(scans)): # go through the list & split the comand in 2 
+    scans[i]= scans[i].split() 
     if scans[i][0] == "forward":
         hValue += int(scans[i][1])
     elif scans[i][0] == "down":
