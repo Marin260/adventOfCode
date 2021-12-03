@@ -1,5 +1,5 @@
 # Part one
-with open('input.txt') as f:
+with open('day1/input.txt') as f:
     scans = f.readlines()
 
 num_of_depth_changes = 0
