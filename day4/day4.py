@@ -68,12 +68,3 @@ for column in list_of_boards[lastBoardDrawnindex]:
         total += num
 total *= lastBoardDrawnNumber # mul by the last drawn number
 print(total)
-
-                    
-        
-                    
-
-
-
-
-    
