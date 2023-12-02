@@ -28,10 +28,7 @@ def parseStringDigit(s):
 
 def calibrate(line: str):
     digitString = parseDigit(line)
-    if len(digitString) == 1:
-        return int(digitString + digitString)
-    if len(digitString) > 1:
-        return int(digitString[0] + digitString[-1])
+    return int(digitString[0] + digitString[-1])
 
 with open("input.txt", "r") as f:
     data = f.read().split("\n")
