@@ -1,19 +1,7 @@
-import time
-
+import math
 
 with open("input.txt", "r") as f:
     data = f.read().split("\n")
-
-def endInZ(d: dict):
-    x = True
-    z = 0
-    for val in d.values():
-        if val[-1] != "Z": x = False
-        if val[-1] == "Z": z += 1
-    if z > 2:
-        print("total of Z:", z)
-    return x
-
 
 nodes = {}
 for line in data[2:]:
@@ -21,12 +9,9 @@ for line in data[2:]:
     children = children.lstrip("(").rstrip(")").split(", ")
     nodes[parent] = children
 
-i = 0
-steps = 0
-steps2 = 0
+# part one
+steps, i = 0, 0
 curent_node = "AAA"
-
-
 
 while i < len(data[0]):
     path = data[0][i]
@@ -42,26 +27,28 @@ while i < len(data[0]):
     else: i+=1
 print(steps)
 
+# part two
+def findFirstZ(el, data):
+    steps, i = 0, 0
+    while i < len(data[0]):
+        path = data[0][i]
 
-# theoratically this thing works for part to but there is no way for it to finish
-# should te cycle from A to Z for each element and then sync them up
-i = 0
-e = {}
+        if el[-1] == "Z": break
+
+        if path == "L": el = nodes[el][0]
+        else:  el = nodes[el][1]
+        steps += 1
+
+        if i == (len(data[0])-1): i = 0
+        else: i += 1
+
+    return steps
+
+
 startNodes = filter(lambda x: x[-1] == "A", nodes.keys())
-startNodes = list(startNodes)
-while i < len(data[0]):
-    path = data[0][i]
-    for el in startNodes:
-        if path == "L":
-            e[el] = nodes[el][0]
-        else: 
-            e[el] = nodes[el][1]
-    steps2 += 1
-    if endInZ(e): break
-    startNodes = list(e.values())
-    e = {}
 
+minCycles = [] 
+for node in startNodes:
+    minCycles.append(findFirstZ(node, data))
 
-    if i == (len(data[0])-1): i = 0
-    else: i+=1
-print(steps2)
+print(math.lcm(*minCycles))
