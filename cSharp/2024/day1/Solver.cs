@@ -1,8 +1,3 @@
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks.Dataflow;
-
 namespace day1.SolverAOC;
 public class SolverAOC
 {
